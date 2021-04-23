@@ -1,0 +1,27 @@
+.product {
+  .wrapper {
+    width: 100%;
+    color: #656565;
+
+    .productCover {
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 400px;
+    }
+
+    .productTag {
+      font-size: 29px;
+    }
+
+    .productName {
+      color: #000;
+      font-weight: bold;
+      font-size: 34px;
+    }
+
+    .productPrice {
+      font-size: 22px;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.productSorter {
+  font-size: 22px;
+
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #000;
+  }
+  .orderSort {
+    .sortControls {
+      button:first-child {
+        margin-right: 0.3rem;
+      }
+    }
+
+    span {
+      color: #9b9b9b;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.productSection {
+  header {
+    padding-bottom: 2rem;
+
+    .category {
+      font-size: 30px;
+      p {
+        color: #9b9b9b;
+
+        strong {
+          color: #000;
+        }
+      }
+    }
+  }
+
+  .productWrapper {
+    position: relative;
+  }
+}
