@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 
-export const AngleDown = (props) => {
+export const AngleDown: FC = (props) => {
   return (
     <svg
       {...props}

@@ -1,13 +1,46 @@
-.product {
+.productItem {
+  &:hover {
+    cursor: pointer;
+  }
+
   .wrapper {
     width: 100%;
     color: #656565;
+    position: relative;
 
-    .productCover {
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      min-height: 400px;
+    div {
+      .productCover {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 400px;
+      }
+
+      .bestSellerFlag {
+        padding: 0.3rem 1.5rem;
+        background-color: #fff;
+        color: #000;
+        font-size: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .addToCart {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+
+        button {
+          text-align: center;
+          padding: 0.5rem 0;
+          background-color: #000;
+          color: #fff;
+          font-size: 23px;
+          border: none;
+          width: 100%;
+        }
+      }
     }
 
     .productTag {

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FC, Fragment } from "react";
 import { Button, Row, Col } from "react-bootstrap";
+import { useProductContext } from "../../context";
+import { IProductProps } from "../../context/Products/types";
+import { Loader } from "../Loader";
 import styles from "./featuredProduct.module.scss";
-
-const FeaturedImg = "/images/featured.png";
-const SimilarProductImg = "/images/Rectangle 10.png";
 
 const {
   featuredProduct,
@@ -11,70 +11,94 @@ const {
   more_details,
   description,
   wrapper,
+  addToCartBtn,
   similar_products,
   similar_product__img,
+  photoOfDay,
 } = styles;
 
-export const FeaturedProduct = () => {
+export const FeaturedProduct: FC = () => {
+  const { isLoading, data: productList } = useProductContext();
+
+  const fetdProduct = productList.find((product) => product.featured === true);
+
+  // const { name, image, category, details } = fetdProduct && fetdProduct;
+
+  const name = fetdProduct?.name;
+  const image = fetdProduct?.image;
+  const category = fetdProduct?.category;
+  const details = fetdProduct?.details;
+
+  const { dimmensions, size, description: productDescription, recommendations } =
+    details && details;
+
+  const { width, height } = dimmensions && dimmensions;
+
   return (
     <div className={`${featuredProduct} pt-5`}>
-      <header className="d-flex justify-content-between align-items-center mb-4">
-        <h1>Samurai King Resting</h1>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Fragment>
+          <header className="d-flex justify-content-between align-items-center mb-4">
+            <h1>{name}</h1>
 
-        <Button variant="dark">ADD TO CART</Button>
-      </header>
+            <Button className="" variant="dark">
+              ADD TO CART
+            </Button>
+          </header>
 
-      <div className={`${featured_img__wrapper} mb-5`}>
-        <img src={FeaturedImg} alt="Featured Image" />
-      </div>
+          <div className={`${featured_img__wrapper} mb-5`}>
+            {image && typeof image === "object" && <img src={image.src} alt={image.alt} />}
 
-      <Row className={more_details}>
-        <Col sm={12} md={12} lg={8}>
-          <div className={description}>
-            <h2>About the Samurai King Resting</h2>
+            {image && typeof image === "string" && <img src={image} alt="Featured Image" />}
 
-            <p>
-              <strong>Pets</strong>
-            </p>
-
-            <p>
-              So how did the classical Latin become so incoherent? According to McClintock, a 15th
-              century typesetter likely scrambled part of Cicero's De Finibus in order to provide
-              placeholder text to mockup various fonts for a type specimen book.So how did the
-              classical Latin become so incoherent? According to McClintock, a 15th century
-              typesetter likely scrambled part of Cicero's De Finibus in order to provide
-              placeholder text to mockup various fonts for a type specimen book.So how did the
-              classical Latin become so incoherent? According to McClintock.
-            </p>
-          </div>
-        </Col>
-
-        <Col sm={12} md={12} lg={4}>
-          <div className={similar_products}>
-            <h2>People also buy</h2>
-
-            <div className={`${wrapper} mb-5`}>
-              <div className={similar_product__img}>
-                <img src={SimilarProductImg} alt="Similar Product" />
-              </div>
-
-              <div className={similar_product__img}>
-                <img src={SimilarProductImg} alt="Similar Product" />
-              </div>
-
-              <div className={similar_product__img}>
-                <img src={SimilarProductImg} alt="Similar Product" />
-              </div>
-            </div>
-
-            <div>
-              <h2>Details</h2>
-              <p>Size: 1020 x 1020 pixel</p>
-              <p>Size: 15mb</p>
+            <div className={photoOfDay}>
+              <span>Photo of the day</span>
             </div>
           </div>
-        </Col>
-      </Row>
+
+          <div className={`${addToCartBtn} my-5`}>
+            <Button className="" variant="dark">
+              ADD TO CART
+            </Button>
+          </div>
+
+          <Row className={more_details}>
+            <Col sm={12} md={12} lg={8}>
+              <div className={description}>
+                <h2>{productDescription && `About the ${name}`}</h2>
+
+                <p>
+                  <strong>{category}</strong>
+                </p>
+
+                <p>{productDescription}</p>
+              </div>
+            </Col>
+
+            <Col sm={12} md={12} lg={4}>
+              <div className={similar_products}>
+                <h2>People also buy</h2>
+
+                <div className={`${wrapper} mb-5`}>
+                  {recommendations.map((recommendation, idx) => (
+                    <div key={idx} className={similar_product__img}>
+                      <img src={recommendation.src} alt={recommendation.alt} />
+                    </div>
+                  ))}
+                </div>
+
+                <div>
+                  <h2>Details</h2>
+                  <p>{width && height && `Size: ${width} x ${height} pixel`}</p>
+                  <p>{size && `Size: ${size / 1000}mb`}</p>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Fragment>
+      )}
     </div>
   );
 };

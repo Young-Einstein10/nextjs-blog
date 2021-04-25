@@ -1,15 +1,23 @@
 import Head from "next/head";
-import { Button, Row, Col, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { useCartContext } from "../../context";
 import styles from "./layout.module.scss";
 
 const Logo = "./images/logo.png";
 const CartIcon = "./images/cart.png";
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { container, column, row, addToCartBtn, cartCount } = styles;
+
+  const {
+    openCart,
+    cart: { cartItems },
+  } = useCartContext();
+
   return (
-    <Container fluid className={styles.container}>
-      <Row>
-        <Col className="">
+    <div className={container}>
+      <div className={row}>
+        <div className={column}>
           <Head>
             <title>Product List | Bejamas</title>
             <link rel="icon" href="/favicon.ico" />
@@ -23,13 +31,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <img src={Logo} alt="Site Logo" />
             </div>
 
-            <Button variant="light">
+            <Button onClick={() => openCart()} className={addToCartBtn} variant="light">
               <img src={CartIcon} alt="Cart" />
+
+              <div className={cartCount}>{cartItems.length}</div>
             </Button>
           </nav>
           {children}
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 }

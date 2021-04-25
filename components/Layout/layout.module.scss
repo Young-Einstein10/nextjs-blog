@@ -1,13 +1,52 @@
 .container {
   padding: 0 5rem;
+  width: 100%;
 
-  nav {
-    border-bottom: 4px solid #e4e4e4;
+  margin-right: auto;
+  margin-left: auto;
 
-    button {
-      background: none;
-      border: none;
-      padding: 10px;
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+
+    .column {
+      position: relative;
+      width: 100%;
+      nav {
+        border-bottom: 4px solid #e4e4e4;
+
+        .addToCartBtn {
+          background: none;
+          border: none;
+          padding: 10px;
+          position: relative;
+
+          .cartCount {
+            background-color: #000;
+            color: #fff;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+          }
+        }
+
+        @media screen and (max-width: 768px) {
+          padding: 0 1.3rem;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0;
+
+    & > .row {
+      margin: 0;
+      & > .column {
+        padding: 0;
+      }
     }
   }
 }

@@ -1,14 +1,76 @@
 .productFilter {
   width: 300px;
   height: 100%;
+  color: #1d1d1d;
+  font-size: 22px;
 
   aside {
     width: 100%;
   }
 
-  .categoryFilter {
+  .categoryFilter,
+  .priceFilter {
+    min-height: 250px;
+
+    input[type="checkbox"] {
+      width: 25px;
+      height: 25px;
+      border: 2px solid #000000;
+    }
+
+    @supports (-webkit-appearance: none) or (-moz-appearance: none) {
+      input[type="checkbox"],
+      input[type="radio"] {
+        --active: #275efe;
+        --active-inner: #fff;
+        --focus: 2px rgba(39, 94, 254, 0.25);
+        --border: #bbc1e1;
+        --border-hover: #275efe;
+        --background: #fff;
+        --disabled: #f6f8ff;
+        --disabled-inner: #e1e6f9;
+      }
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      --focus: 2px rgba(39, 94, 254, 0.25);
+      outline: none;
+      transition: box-shadow 0.2s;
+    }
+
+    input[type="checkbox"]:focus,
+    input[type="radio"]:focus {
+      box-shadow: 0 0 0 var(--focus);
+    }
+
+    /* Default */
+    input[type="checkbox"],
+    input[type="radio"] {
+      --active: #275efe;
+      --border: #bbc1e1;
+      border: 1px solid var(--bc, var(--border));
+    }
+
+    /* Override defaults */
+    input[type="checkbox"]:checked,
+    input[type="radio"]:checked {
+      --b: var(--active);
+      --bc: var(--active);
+    }
+
+    /* Apply another border color on hover if not checked & not disabled */
+    input[type="checkbox"]:not(:checked):not(:disabled):hover,
+    input[type="radio"]:not(:checked):not(:disabled):hover {
+      --bc: var(--border-hover);
+    }
   }
 
-  .priceFilter {
+  .categoryFilter {
+    border-bottom: 1px solid #c2c2c2;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 }

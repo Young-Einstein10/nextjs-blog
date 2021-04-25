@@ -1,17 +1,17 @@
 import React from "react";
-
-import styles from "./productFilter.module.scss";
 import { CategoryFilter } from "./_partials/CategoryFilter";
 import { PriceFilter } from "./_partials/PriceFilter";
+
+import styles from "./productFilter.module.scss";
 
 export const ProductFilter = () => {
   const { productFilter } = styles;
 
   return (
-    <div className={productFilter}>
+    <div className={`${productFilter} px-4`}>
       <aside>
         <CategoryFilter />
-        <ProductFilter />
+        <PriceFilter />
       </aside>
     </div>
   );

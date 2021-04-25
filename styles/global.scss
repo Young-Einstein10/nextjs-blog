@@ -21,3 +21,19 @@ img {
   height: auto;
   display: block;
 }
+
+.custom_border_bottom {
+  border-bottom: solid 2px;
+}
+
+@media screen and (max-width: 768px) {
+  .product-list {
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .product-list {
+    padding: 0 1.3rem;
+  }
+}

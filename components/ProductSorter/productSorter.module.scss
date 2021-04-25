@@ -12,10 +12,29 @@
       button:first-child {
         margin-right: 0.3rem;
       }
+
+      .asc,
+      .desc {
+        background-color: #000;
+        border: none;
+        color: #fff;
+        padding: 0 2px;
+      }
     }
 
-    span {
+    label {
       color: #9b9b9b;
     }
+
+    select {
+      border: none;
+      width: 80px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  div.productSorter {
+    display: none !important;
   }
 }

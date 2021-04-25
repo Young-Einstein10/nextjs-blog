@@ -1,14 +1,21 @@
-import { Layout, FeaturedProduct, ProductSection } from "../components";
+import { FC } from "react";
+import { Layout, FeaturedProduct, ProductSection, Cart } from "../components";
+import { useCartContext } from "../context";
 
-export default function Home() {
-  // console.log(params, allPostsData);
+const Home: FC = () => {
+  const {
+    cart: { isOpen },
+  } = useCartContext();
 
   return (
     <Layout>
       <main className="product-list">
         <FeaturedProduct />
         <ProductSection />
+        {isOpen ? <Cart /> : null}
       </main>
     </Layout>
   );
-}
+};
+
+export default Home;

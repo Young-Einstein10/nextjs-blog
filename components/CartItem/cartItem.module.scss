@@ -1,0 +1,20 @@
+.cartItemWrapper {
+  border-bottom: 1px solid #c2c2c2;
+
+  .productDetails {
+    .name {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .price {
+      font-size: 29px;
+      color: #656565;
+    }
+  }
+
+  .productImg {
+    width: 150px;
+    height: 86px;
+  }
+}
