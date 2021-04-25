@@ -1,0 +1,21 @@
+.pagination {
+  border: none;
+
+  button {
+    background: none;
+    border: none;
+  }
+
+  .pageItem {
+    .pagelink {
+      border: none;
+      color: #b4b4b4;
+      font-size: 29px;
+      background: none;
+    }
+
+    .active {
+      color: #000;
+    }
+  }
+}

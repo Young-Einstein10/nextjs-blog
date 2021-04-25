@@ -1,7 +1,7 @@
 import React, { useState, useReducer, useEffect, useContext, createContext, FC } from "react";
 import { reducerFn, initialState } from "./helpers";
 import data from "../../products.json";
-import { IProductProps, IProductStateProps, IStateProps, SortValue } from "./types";
+import { IProductProps, IProductStateProps } from "./types";
 
 const ProductContext = createContext<IProductStateProps | undefined>(undefined);
 
@@ -13,9 +13,39 @@ const ProductProvider: FC = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducerFn, initialState);
 
+  const { filteredProducts, currentPage, productsPerPage } = state;
+
   useEffect(() => {
     loadProducts(data.products);
   }, []);
+
+  // Get current posts
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  const nextPage = () => {
+    dispatch({
+      type: "SET_CURRENT_PAGE",
+      payload: currentPage + 1,
+    });
+  };
+
+  const prevPage = () => {
+    dispatch({
+      type: "SET_CURRENT_PAGE",
+      payload: currentPage > 1 ? currentPage - 1 : currentPage,
+    });
+  };
+
+  const setCurrentPage = (pageNum: number) =>
+    dispatch({
+      type: "SET_CURRENT_PAGE",
+      payload: pageNum,
+    });
 
   const sortByPrice = (order = "asc") =>
     dispatch({
@@ -45,22 +75,6 @@ const ProductProvider: FC = ({ children }) => {
       payload: loading,
     });
 
-  const getAscendingOrder = (sortValue: SortValue) =>
-    dispatch({
-      type: "ASC_ORDER",
-      payload: {
-        sortValue,
-      },
-    });
-
-  const getDescendingOrder = (sortValue: SortValue) =>
-    dispatch({
-      type: "DESC_ORDER",
-      payload: {
-        sortValue,
-      },
-    });
-
   return (
     <ProductContext.Provider
       value={{
@@ -69,8 +83,13 @@ const ProductProvider: FC = ({ children }) => {
         loadProducts,
         sortByAlphabets,
         sortByPrice,
-        getAscendingOrder,
-        getDescendingOrder,
+        paginate,
+        nextPage,
+        prevPage,
+        currentPage,
+        currentProducts,
+        productsPerPage,
+        totalProducts: filteredProducts.length,
       }}>
       {children}
     </ProductContext.Provider>

@@ -19,8 +19,13 @@ export interface IProductStateProps {
   sortByAlphabets: (order: Order) => void;
   loadProducts: (products: IProductProps[]) => void;
   changeLoadingState: (loading: boolean) => void;
-  getAscendingOrder: (sortValue: SortValue) => void;
-  getDescendingOrder: (sortValue: SortValue) => void;
+  paginate: (pageNumber: number) => void;
+  productsPerPage: number;
+  totalProducts: number;
+  currentPage: number;
+  currentProducts: IProductProps[];
+  nextPage: () => void;
+  prevPage: () => void;
 }
 
 export type Order = "asc" | "desc";
@@ -47,6 +52,8 @@ export interface IStateProps {
   isLoading: boolean;
   data: IProductProps[];
   filteredProducts: IProductProps[];
+  currentPage: number;
+  productsPerPage: number;
   error: any;
 }
 
@@ -56,8 +63,7 @@ type ActionTypes =
   | "LOAD_PRODUCTS"
   | "SORT_BY_PRICE"
   | "SORT_BY_ALPHABETS"
-  | "ASC_ORDER"
-  | "DESC_ORDER";
+  | "SET_CURRENT_PAGE";
 
 export type Action = {
   type: ActionTypes;

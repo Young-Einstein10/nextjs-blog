@@ -10,12 +10,7 @@ export const ProductSorter = () => {
 
   const { productSorter, orderSort, priceSort, sortControls, asc, desc } = styles;
 
-  const {
-    sortByPrice,
-    sortByAlphabets,
-    getAscendingOrder,
-    getDescendingOrder,
-  } = useProductContext();
+  const { sortByPrice, sortByAlphabets } = useProductContext();
 
   // Sort Products by Price by Default on Page Mount
   useEffect(() => {
@@ -24,12 +19,22 @@ export const ProductSorter = () => {
 
   const handleAsc = () => {
     setOrder("asc");
-    getAscendingOrder(sortValue);
+
+    if (sortValue === "price") {
+      sortByPrice("asc");
+    } else {
+      sortByAlphabets("asc");
+    }
   };
 
   const handleDesc = () => {
     setOrder("desc");
-    getDescendingOrder(sortValue);
+
+    if (sortValue === "price") {
+      sortByPrice("desc");
+    } else {
+      sortByAlphabets("desc");
+    }
   };
 
   const handleProductSort = (value: SortValue) => {

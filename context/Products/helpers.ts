@@ -29,6 +29,8 @@ export const initialState: IStateProps = {
   isLoading: false,
   data: data.products,
   filteredProducts: [],
+  currentPage: 1,
+  productsPerPage: 6,
   error: null,
 };
 
@@ -47,22 +49,6 @@ export const reducerFn = (state = initialState, action: Action): IStateProps => 
         ...state,
         data: [...state.data, ...latestProducts],
         filteredProducts: [...state.data, ...latestProducts],
-      };
-
-    case "ASC_ORDER":
-      const { sortValue: ascSortValue } = action.payload;
-
-      return {
-        ...state,
-        filteredProducts: sortAsc(state.filteredProducts, ascSortValue),
-      };
-
-    case "DESC_ORDER":
-      const { sortValue: descSortValue } = action.payload;
-
-      return {
-        ...state,
-        filteredProducts: sortDesc(state.filteredProducts, descSortValue),
       };
 
     case "SORT_BY_ALPHABETS":
@@ -85,6 +71,12 @@ export const reducerFn = (state = initialState, action: Action): IStateProps => 
       return {
         ...state,
         filteredProducts,
+      };
+
+    case "SET_CURRENT_PAGE":
+      return {
+        ...state,
+        currentPage: action.payload,
       };
 
     case "ERROR":
