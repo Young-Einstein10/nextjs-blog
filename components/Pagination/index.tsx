@@ -35,7 +35,7 @@ export const Pagination: FC = (props) => {
   const lastPage = pageNumbers[pageNumbers.length - 1];
 
   return (
-    <footer className="mt-3 mb-5 d-flex justify-content-center align-items-center">
+    <footer className="mt-3 mb-5 ml-md-4 d-flex justify-content-center align-items-center">
       <ul className={`${pagination} pagination`}>
         {currentPage > 1 && (
           <button onClick={() => prevPage()} className="mr-2">

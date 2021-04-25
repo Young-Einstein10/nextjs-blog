@@ -13,16 +13,6 @@ export const PriceFilter = () => {
           <input className="mr-3" type="checkbox" name="people" id="" />
           People
         </label>
-
-        <label className="d-flex align-items-center my-3" htmlFor="people">
-          <input className="mr-3" type="checkbox" name="people" id="" />
-          People
-        </label>
-
-        <label className="d-flex align-items-center my-3" htmlFor="people">
-          <input className="mr-3" type="checkbox" name="people" id="" />
-          People
-        </label>
       </div>
     </div>
   );

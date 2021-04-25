@@ -46,6 +46,39 @@ export const ProductSorter = () => {
     }
   };
 
+  // var data = [
+  //   {
+  //     foo: 1,
+  //     bar: 2,
+  //     category: "people",
+  //     people: 123,
+  //     licence: {
+  //       id: 1,
+  //       issuer: "John Doe",
+  //     },
+  //   },
+  //   {
+  //     foo: 11,
+  //     bar: 3,
+  //     category: "land",
+  //     people: 1223,
+  //     licence: {
+  //       id: 3,
+  //       issuer: "Oga ade",
+  //     },
+  //   },
+  // ];
+
+  // var filters = ["pets", "land"];
+
+  // let result: any[] = [];
+
+  // filters.forEach((filter) => {
+  //   result = [...result, ...data.filter((data) => data.category === filter)];
+  // });
+
+  // console.log(result);
+
   return (
     <div className={`${productSorter} d-flex align-items-center`}>
       <div className={`${orderSort} d-flex align-items-center`}>

@@ -13,8 +13,8 @@ export const ProductList = () => {
   const { isLoading, currentProducts } = useProductContext();
 
   return (
-    <div className="d-flex flex-column">
-      <Row className={`${productList} ml-md-4`}>
+    <div className="d-flex flex-column flex-grow-1 ml-md-4">
+      <Row className={`${productList}`}>
         {isLoading ? (
           <Loader />
         ) : (

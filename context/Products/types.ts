@@ -17,6 +17,7 @@ export interface IProductStateProps {
   error: any;
   sortByPrice: (order: Order) => void;
   sortByAlphabets: (order: Order) => void;
+  setFilteredProducts: (filters: string[]) => void;
   loadProducts: (products: IProductProps[]) => void;
   changeLoadingState: (loading: boolean) => void;
   paginate: (pageNumber: number) => void;
@@ -63,7 +64,8 @@ type ActionTypes =
   | "LOAD_PRODUCTS"
   | "SORT_BY_PRICE"
   | "SORT_BY_ALPHABETS"
-  | "SET_CURRENT_PAGE";
+  | "SET_CURRENT_PAGE"
+  | "SET_FILTERED_PRODUCTS";
 
 export type Action = {
   type: ActionTypes;

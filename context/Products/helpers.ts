@@ -47,8 +47,14 @@ export const reducerFn = (state = initialState, action: Action): IStateProps => 
 
       return {
         ...state,
-        data: [...state.data, ...latestProducts],
+        data: latestProducts,
         filteredProducts: [...state.data, ...latestProducts],
+      };
+
+    case "SET_FILTERED_PRODUCTS":
+      return {
+        ...state,
+        filteredProducts: action.payload,
       };
 
     case "SORT_BY_ALPHABETS":

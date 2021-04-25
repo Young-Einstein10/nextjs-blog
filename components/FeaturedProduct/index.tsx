@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from "react";
 import { Button, Row, Col } from "react-bootstrap";
-import { useProductContext } from "../../context";
+import { useCartContext, useProductContext } from "../../context";
 import { IProductProps } from "../../context/Products/types";
 import { Loader } from "../Loader";
 import styles from "./featuredProduct.module.scss";
@@ -19,6 +19,7 @@ const {
 
 export const FeaturedProduct: FC = () => {
   const { isLoading, data: productList } = useProductContext();
+  const { addProductToCart } = useCartContext();
 
   const fetdProduct = productList.find((product) => product.featured === true);
 
@@ -43,7 +44,7 @@ export const FeaturedProduct: FC = () => {
           <header className="d-flex justify-content-between align-items-center mb-4">
             <h1>{name}</h1>
 
-            <Button className="" variant="dark">
+            <Button onClick={() => addProductToCart(fetdProduct)} className="" variant="dark">
               ADD TO CART
             </Button>
           </header>
@@ -59,7 +60,7 @@ export const FeaturedProduct: FC = () => {
           </div>
 
           <div className={`${addToCartBtn} my-5`}>
-            <Button className="" variant="dark">
+            <Button onClick={() => addProductToCart(fetdProduct)} className="" variant="dark">
               ADD TO CART
             </Button>
           </div>

@@ -69,6 +69,19 @@ const ProductProvider: FC = ({ children }) => {
       payload: products,
     });
 
+  const setFilteredProducts = (filters: string[]) => {
+    let result: IProductProps[] = [];
+
+    filters.forEach((filter) => {
+      result = [...result, ...state.data.filter((product) => product.category === filter)];
+    });
+
+    dispatch({
+      type: "SET_FILTERED_PRODUCTS",
+      payload: result.length ? result : state.data,
+    });
+  };
+
   const changeLoadingState = (loading = false) =>
     dispatch({
       type: "IS_LOADING",
@@ -83,6 +96,7 @@ const ProductProvider: FC = ({ children }) => {
         loadProducts,
         sortByAlphabets,
         sortByPrice,
+        setFilteredProducts,
         paginate,
         nextPage,
         prevPage,
