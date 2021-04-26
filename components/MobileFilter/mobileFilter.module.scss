@@ -1,0 +1,48 @@
+.modal100w {
+  width: 100%;
+  position: absolute;
+  max-width: none !important;
+  bottom: 0;
+  margin: 0 auto;
+
+  .modalContent {
+    border: 0;
+    border-radius: 0;
+  }
+
+  .modalBody {
+    height: 400px;
+    overflow-y: auto;
+    z-index: 1;
+    margin-bottom: 90px;
+  }
+
+  .modalFooter {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 3;
+    border-top: 4px solid #e4e4e4;
+
+    button:first-child {
+      background: none;
+      border: 3px solid #000;
+      color: #000;
+      border-radius: 0;
+      height: 48px;
+      width: 50%;
+    }
+
+    button:last-child {
+      background-color: #000;
+      border: none;
+      border-radius: 0;
+      color: #fff;
+      width: 50%;
+      height: 48px;
+    }
+  }
+}

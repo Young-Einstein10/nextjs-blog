@@ -1,23 +1,13 @@
-import React, { useState, useReducer, useEffect, useContext, createContext, FC } from "react";
+import React, { useReducer, useEffect, useContext, createContext, FC } from "react";
 import { reducerFn, initialState } from "./helpers";
-import data from "../../products.json";
-import { IProductProps, IProductStateProps } from "./types";
+import { IPriceFilter, IProductProps, IProductStateProps } from "./types";
 
 const ProductContext = createContext<IProductStateProps | undefined>(undefined);
 
 const ProductProvider: FC = ({ children }) => {
-  // const [products, setProducts] = useState<IProductStateProps>({
-  //   isLoading: false,
-  //   data: data.products,
-  // });
-
   const [state, dispatch] = useReducer(reducerFn, initialState);
 
   const { filteredProducts, currentPage, productsPerPage } = state;
-
-  useEffect(() => {
-    loadProducts(data.products);
-  }, []);
 
   // Get current posts
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -69,7 +59,7 @@ const ProductProvider: FC = ({ children }) => {
       payload: products,
     });
 
-  const setFilteredProducts = (filters: string[]) => {
+  const filterByCategory = (filters: string[]) => {
     let result: IProductProps[] = [];
 
     filters.forEach((filter) => {
@@ -77,7 +67,26 @@ const ProductProvider: FC = ({ children }) => {
     });
 
     dispatch({
-      type: "SET_FILTERED_PRODUCTS",
+      type: "FILTER_BY_CATEGORY",
+      payload: result.length ? result : state.data,
+    });
+  };
+
+  const filterByPrice = (filters: IPriceFilter[]) => {
+    let result: IProductProps[] = [];
+
+    filters.forEach(({ min, max }) => {
+      const min_price = Number(min);
+      const max_price = Number(max);
+
+      result = [
+        ...result,
+        ...state.data.filter((product) => product.price >= min_price && product.price <= max_price),
+      ];
+    });
+
+    dispatch({
+      type: "FILTER_BY_PRICE",
       payload: result.length ? result : state.data,
     });
   };
@@ -88,15 +97,19 @@ const ProductProvider: FC = ({ children }) => {
       payload: loading,
     });
 
+  let clearFilters = () => {};
+
   return (
     <ProductContext.Provider
       value={{
         ...state,
         changeLoadingState,
         loadProducts,
+        clearFilters,
         sortByAlphabets,
         sortByPrice,
-        setFilteredProducts,
+        filterByCategory,
+        filterByPrice,
         paginate,
         nextPage,
         prevPage,

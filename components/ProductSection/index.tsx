@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, useState } from "react";
 import { ProductSorter } from "../ProductSorter";
 import { ProductFilter } from "../ProductFilter";
 import { ProductList } from "../ProductList";
@@ -6,11 +6,16 @@ import { FilterToggle } from "../SVGs";
 
 import styles from "./productSection.module.scss";
 import { useProductContext } from "../../context";
+import { MobileFilter } from "../MobileFilter";
 
-export const ProductSection = () => {
+export const ProductSection: FC = () => {
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+
   const { productSection, productWrapper, category, filterToggle } = styles;
 
   const { filteredProducts } = useProductContext();
+
+  const toggleFilterModal = () => setIsMobileFilterOpen((open) => !open);
 
   return (
     <section className={`${productSection} mt-5`}>
@@ -30,7 +35,7 @@ export const ProductSection = () => {
 
         <ProductSorter />
 
-        <button className={filterToggle}>
+        <button onClick={() => toggleFilterModal()} className={filterToggle}>
           <FilterToggle />
         </button>
       </header>
@@ -39,6 +44,10 @@ export const ProductSection = () => {
         <ProductFilter />
 
         <ProductList />
+
+        {isMobileFilterOpen ? (
+          <MobileFilter isOpen={isMobileFilterOpen} toggleFilterModal={toggleFilterModal} />
+        ) : null}
       </div>
     </section>
   );

@@ -19,7 +19,7 @@ export const ProductList = () => {
           <Loader />
         ) : (
           currentProducts.map((product, idx) => (
-            <Col key={idx} sm={12} md={6} lg={4} className="mb-5">
+            <Col key={idx} xs={12} sm={6} md={6} lg={4} className="mb-5">
               <ProductItem product={product} />
             </Col>
           ))

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { CategoryFilter } from "./_partials/CategoryFilter";
 import { PriceFilter } from "./_partials/PriceFilter";
 
 import styles from "./productFilter.module.scss";
 
-export const ProductFilter = () => {
+export const ProductFilter: FC = () => {
   const { productFilter } = styles;
 
   return (

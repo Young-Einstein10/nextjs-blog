@@ -17,11 +17,13 @@ const {
   photoOfDay,
 } = styles;
 
-export const FeaturedProduct: FC = () => {
-  const { isLoading, data: productList } = useProductContext();
+export const FeaturedProduct: FC<{ products: IProductProps[] }> = ({ products: productList }) => {
+  const { isLoading } = useProductContext();
   const { addProductToCart } = useCartContext();
 
-  const fetdProduct = productList.find((product) => product.featured === true);
+  const fetdProduct = productList.length
+    ? productList.find((product) => product.featured === true)
+    : null;
 
   // const { name, image, category, details } = fetdProduct && fetdProduct;
 

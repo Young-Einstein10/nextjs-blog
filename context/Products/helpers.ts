@@ -1,4 +1,3 @@
-import data from "../../products.json";
 import { IStateProps, Action, IProductProps } from "./types";
 
 export function sortAsc(arr: any[], field: any) {
@@ -27,7 +26,7 @@ export function sortDesc(arr: any[], field: any) {
 
 export const initialState: IStateProps = {
   isLoading: false,
-  data: data.products,
+  data: [],
   filteredProducts: [],
   currentPage: 1,
   productsPerPage: 6,
@@ -48,10 +47,16 @@ export const reducerFn = (state = initialState, action: Action): IStateProps => 
       return {
         ...state,
         data: latestProducts,
-        filteredProducts: [...state.data, ...latestProducts],
+        filteredProducts: latestProducts,
       };
 
-    case "SET_FILTERED_PRODUCTS":
+    case "FILTER_BY_CATEGORY":
+      return {
+        ...state,
+        filteredProducts: action.payload,
+      };
+
+    case "FILTER_BY_PRICE":
       return {
         ...state,
         filteredProducts: action.payload,

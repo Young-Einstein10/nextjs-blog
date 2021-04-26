@@ -17,8 +17,10 @@ export interface IProductStateProps {
   error: any;
   sortByPrice: (order: Order) => void;
   sortByAlphabets: (order: Order) => void;
-  setFilteredProducts: (filters: string[]) => void;
+  filterByCategory: (filters: string[]) => void;
+  filterByPrice: (filters: IPriceFilter[]) => void;
   loadProducts: (products: IProductProps[]) => void;
+  clearFilters: () => void;
   changeLoadingState: (loading: boolean) => void;
   paginate: (pageNumber: number) => void;
   productsPerPage: number;
@@ -36,6 +38,11 @@ interface IPicture {
   src: string;
   alt: string;
 }
+
+export type IPriceFilter = {
+  min: string;
+  max: string;
+};
 
 interface IDimensionProps {
   width: number;
@@ -65,7 +72,8 @@ type ActionTypes =
   | "SORT_BY_PRICE"
   | "SORT_BY_ALPHABETS"
   | "SET_CURRENT_PAGE"
-  | "SET_FILTERED_PRODUCTS";
+  | "FILTER_BY_CATEGORY"
+  | "FILTER_BY_PRICE";
 
 export type Action = {
   type: ActionTypes;

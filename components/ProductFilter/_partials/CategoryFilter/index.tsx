@@ -1,32 +1,30 @@
 import React, { FC, useState } from "react";
 import { useProductContext } from "../../../../context";
 import { Loader } from "../../../Loader";
-import styles from "../../productFilter.module.scss";
+import { CloseBtn } from "../../../SVGs";
+import styles from "./categoryFilter.module.scss";
 
 type ICategory = {
   [key: string]: boolean;
 };
 
-export const CategoryFilter: FC = () => {
+interface ICategoryFilterProps {
+  isMobile?: boolean;
+  toggleFilterModal?: () => void;
+}
+
+export const CategoryFilter: FC<ICategoryFilterProps> = ({ isMobile, toggleFilterModal }) => {
   const [checked, setChecked] = useState<ICategory>({});
   const [filters, setFilters] = useState([]);
 
   const { categoryFilter } = styles;
 
-  const { isLoading, data: productData, setFilteredProducts } = useProductContext();
+  const { data: productData, filterByCategory } = useProductContext();
 
   const productCategories = [...new Set(productData.map((product) => product.category))];
 
   const handleCategoryFilter = (filters: string[]) => {
-    setFilteredProducts(filters);
-
-    let result: any[] = [];
-
-    filters.forEach((filter) => {
-      result = [...result, ...productData.filter((product) => product.category === filter)];
-    });
-
-    console.log({ filters, result });
+    filterByCategory(filters);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,36 +56,38 @@ export const CategoryFilter: FC = () => {
 
   return (
     <div className={`${categoryFilter} pb-4`}>
-      <h3>Category</h3>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <div className="mt-4">
-            {productCategories.map((category, idx) => (
-              <label
-                key={idx}
-                className="d-flex align-items-center my-3 text-capitalize"
-                htmlFor={category?.toLowerCase()}>
-                <input
-                  checked={checked[category] || false}
-                  onChange={(e) => {
-                    handleChange(e);
-                    // e.target.name === category.toLowerCase() ? setChecked(true) : setChecked(false);
+      {isMobile ? (
+        <div className="d-flex align-items-center justify-content-between">
+          <h4>
+            <strong>Filter</strong>
+          </h4>
 
-                    // handleCategoryFiter(e.target.name);
-                  }}
-                  className="mr-3"
-                  type="checkbox"
-                  name={category?.toLowerCase()}
-                  id={category?.toLowerCase()}
-                />
-                {category?.toLowerCase()}
-              </label>
-            ))}
-          </div>
-        </>
+          <button onClick={() => toggleFilterModal()} className="">
+            <CloseBtn />
+          </button>
+        </div>
+      ) : (
+        <h3>Category</h3>
       )}
+
+      <div className="mt-4">
+        {productCategories.map((category, idx) => (
+          <label
+            key={idx}
+            className="d-flex align-items-center my-3 text-capitalize"
+            htmlFor={category?.toLowerCase()}>
+            <input
+              checked={checked[category] || false}
+              onChange={(e) => handleChange(e)}
+              className="mr-3"
+              type="checkbox"
+              name={category?.toLowerCase()}
+              id={category?.toLowerCase()}
+            />
+            {category?.toLowerCase()}
+          </label>
+        ))}
+      </div>
     </div>
   );
 };

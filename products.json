@@ -2,7 +2,7 @@
   "products": [
     {
       "name": "Red Bench",
-      "category": "people",
+      "category": "premium",
       "price": 3.89,
       "currency": "USD",
       "image": {
@@ -25,7 +25,7 @@
     },
     {
       "name": "Man",
-      "category": "people",
+      "category": "pets",
       "price": 100,
       "currency": "USD",
       "image": {
@@ -62,7 +62,7 @@
     },
     {
       "name": "Man",
-      "category": "people",
+      "category": "cities",
       "price": 100,
       "currency": "USD",
       "image": {
@@ -75,7 +75,7 @@
     },
     {
       "name": "Architecture",
-      "category": "landmarks",
+      "category": "nature",
       "price": 101,
       "currency": "USD",
       "dimmentions": {
@@ -112,7 +112,7 @@
     },
     {
       "name": "Architecture",
-      "category": "landmarks",
+      "category": "nature",
       "price": 101,
       "currency": "USD",
       "dimmentions": {
@@ -136,7 +136,7 @@
     },
     {
       "name": "Man",
-      "category": "people",
+      "category": "nature",
       "price": 100,
       "currency": "USD",
       "image": {
@@ -173,7 +173,7 @@
     },
     {
       "name": "Man",
-      "category": "people",
+      "category": "premium",
       "price": 100,
       "currency": "USD",
       "image": {
@@ -200,7 +200,7 @@
     },
     {
       "name": "Samurai King Restling",
-      "category": "landmarks",
+      "category": "cities",
       "price": 101,
       "currency": "USD",
       "image": {
