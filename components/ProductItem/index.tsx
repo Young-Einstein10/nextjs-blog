@@ -40,10 +40,6 @@ export const ProductItem: FC<IProductItemProps> = ({ product }) => {
           onMouseEnter={() => handleMouseEnter()}
           onMouseLeave={() => handleMouseLeave()}
           className="position-relative">
-          {/* <div
-            className={`${productCover}`}
-            style={{ backgroundImage: `url('${ProductCover}')` }}></div> */}
-
           <Image src={ProductCover} alt={name} width={310} height={415} layout="responsive" />
 
           {bestseller && (
@@ -54,7 +50,9 @@ export const ProductItem: FC<IProductItemProps> = ({ product }) => {
 
           {isMouseOnProduct && (
             <div className={addToCart}>
-              <button onClick={() => addProductToCart(product)}>ADD TO CART</button>
+              <button aria-label="add-to-cart" onClick={() => addProductToCart(product)}>
+                ADD TO CART
+              </button>
             </div>
           )}
         </div>

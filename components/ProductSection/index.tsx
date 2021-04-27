@@ -7,6 +7,7 @@ import { FilterToggle } from "../SVGs";
 import styles from "./productSection.module.scss";
 import { useProductContext } from "../../context";
 import { MobileFilter } from "../MobileFilter";
+import { Button } from "../Button";
 
 export const ProductSection: FC = () => {
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
@@ -31,9 +32,12 @@ export const ProductSection: FC = () => {
 
         <ProductSorter />
 
-        <button onClick={() => toggleFilterModal()} className={filterToggle}>
+        <Button
+          aria-label="filter-toggle"
+          onClick={() => toggleFilterModal()}
+          className={filterToggle}>
           <FilterToggle />
-        </button>
+        </Button>
       </header>
 
       <div className={`${productWrapper} d-flex`}>

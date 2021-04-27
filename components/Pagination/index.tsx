@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { useProductContext } from "../../context";
+import { Button } from "../Button";
 import { AngleRight, AngleLeft } from "../SVGs";
 
 import styles from "./pagnation.module.scss";
@@ -34,9 +35,11 @@ export const Pagination: FC = (props) => {
     <footer className="mt-3 mb-5 d-flex justify-content-center align-items-center">
       <ul className={`${pagination} pagination`}>
         {currentPage > 1 && (
-          <button onClick={() => prevPage()} className="mr-2">
-            <AngleLeft />
-          </button>
+          <li>
+            <Button aria-label="previous" onClick={() => prevPage()} className="mr-2">
+              <AngleLeft />
+            </Button>
+          </li>
         )}
 
         {pageNumbers.map((number) => (
@@ -54,9 +57,11 @@ export const Pagination: FC = (props) => {
         ))}
 
         {currentPage !== lastPage && (
-          <button onClick={() => nextPage()} className="ml-2">
-            <AngleRight />
-          </button>
+          <li>
+            <Button aria-label="next" onClick={() => nextPage()} className="ml-2">
+              <AngleRight />
+            </Button>
+          </li>
         )}
       </ul>
     </footer>

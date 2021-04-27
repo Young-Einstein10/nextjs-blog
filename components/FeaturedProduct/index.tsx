@@ -26,8 +26,6 @@ export const FeaturedProduct: FC<{ products: IProductProps[] }> = ({ products: p
     ? productList.find((product) => product.featured === true)
     : null;
 
-  // const { name, image, category, details } = fetdProduct && fetdProduct;
-
   const name = fetdProduct?.name;
   const image = fetdProduct?.image;
   const category = fetdProduct?.category;
@@ -53,22 +51,16 @@ export const FeaturedProduct: FC<{ products: IProductProps[] }> = ({ products: p
           </header>
 
           <div className={`${featured_img__wrapper} mb-5`}>
-            {/* {image && typeof image === "object" && (
-              <img src={image.src} alt={image.alt} width={100} height={100} />
-            )} */}
             {image && typeof image === "object" && (
               <Image
                 src={image.src}
                 alt={image.alt}
-                width={1636}
-                height={726}
+                width={1260}
+                height={750}
                 layout="responsive"
               />
             )}
 
-            {/* {image && typeof image === "string" && (
-              <img src={image} alt="Featured Image" width={100} height={100} />
-            )} */}
             {image && typeof image === "string" && (
               <Image src={image} alt="Featured Image" width={1636} height={726} />
             )}
@@ -79,7 +71,11 @@ export const FeaturedProduct: FC<{ products: IProductProps[] }> = ({ products: p
           </div>
 
           <div className={`${addToCartBtn} my-5`}>
-            <Button onClick={() => addProductToCart(fetdProduct)} className="" variant="dark">
+            <Button
+              aria-label="add-to-cart"
+              onClick={() => addProductToCart(fetdProduct)}
+              className=""
+              variant="dark">
               ADD TO CART
             </Button>
           </div>

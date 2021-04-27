@@ -6,3 +6,4 @@ export * from "./CloseBtn";
 export * from "./AngleRight";
 export * from "./AngleLeft";
 export * from "./Cart";
+export * from "./Logo"

@@ -25,8 +25,7 @@ export const CartItem: FC<ICartItemProps> = ({ cartItem }) => {
       </div>
 
       <div className={productImg}>
-        {/* <img src={ProductCover} alt={name} width={100} height={100} /> */}
-        <Image src={ProductCover} alt={name} height={86} width={150} layout="responsive" />
+        <Image src={ProductCover} alt={name} height={86} width={150} />
       </div>
     </div>
   );

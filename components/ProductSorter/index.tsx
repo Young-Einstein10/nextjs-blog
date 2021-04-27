@@ -46,11 +46,17 @@ export const ProductSorter = () => {
     <div className={`${productSorter} d-flex align-items-center`}>
       <div className={`${orderSort} d-flex align-items-center`}>
         <div className={`${sortControls} pr-3`}>
-          <Button onClick={() => handleAsc()} className={order === "asc" ? asc : ""}>
+          <Button
+            aria-label="ascending"
+            onClick={() => handleAsc()}
+            className={order === "asc" ? asc : ""}>
             <ArrowUp />
           </Button>
 
-          <Button onClick={() => handleDesc()} className={order === "desc" ? desc : ""}>
+          <Button
+            aria-label="descending"
+            onClick={() => handleDesc()}
+            className={order === "desc" ? desc : ""}>
             <ArrowDown />
           </Button>
         </div>

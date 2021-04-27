@@ -14,7 +14,7 @@ export const Cart = () => {
   return (
     <div className={productCart}>
       <div className={`${closeCartBtn} d-flex align-items-center justify-content-end`}>
-        <button onClick={() => closeCart()}>
+        <button aria-label="close" onClick={() => closeCart()}>
           <CloseBtn />
         </button>
       </div>
@@ -29,7 +29,9 @@ export const Cart = () => {
 
       {cartItems.length > 0 && (
         <div className={`${clearCartBtn} mt-3`}>
-          <button onClick={() => clearCart()}>CLEAR CART</button>
+          <button aria-label="clear-cart" onClick={() => clearCart()}>
+            CLEAR CART
+          </button>
         </div>
       )}
     </div>

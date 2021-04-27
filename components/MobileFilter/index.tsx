@@ -29,10 +29,10 @@ export const MobileFilter: FC<IMobileFilterProps> = ({ isOpen, toggleFilterModal
       </Modal.Body>
 
       <footer className={`${modalFooter} d-flex align-items-center px-3 pt-4 pb-3`}>
-        <button className="mr-2" onClick={() => clearFilters()}>
+        <button aria-label="clear-filter" className="mr-2" onClick={() => clearFilters()}>
           CLEAR
         </button>
-        <button className="ml-2" onClick={() => toggleFilterModal()}>
+        <button aria-label="save-filter" className="ml-2" onClick={() => toggleFilterModal()}>
           SAVE
         </button>
       </footer>
