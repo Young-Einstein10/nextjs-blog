@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import Image from "next/image";
 import { ICartProps } from "../../context/Cart/types";
 import styles from "./cartItem.module.scss";
 
@@ -19,12 +20,13 @@ export const CartItem: FC<ICartItemProps> = ({ cartItem }) => {
   return (
     <div className={`${cartItemWrapper} d-flex justify-content-between align-items-center p-3`}>
       <div className={productDetails}>
-        <p className={name}>{productName}</p>
+        <p className={`${name}`}>{productName}</p>
         <p className={price}>${productPrice}</p>
       </div>
 
       <div className={productImg}>
-        <img src={ProductCover} alt={name} />
+        {/* <img src={ProductCover} alt={name} width={100} height={100} /> */}
+        <Image src={ProductCover} alt={name} height={86} width={150} layout="responsive" />
       </div>
     </div>
   );

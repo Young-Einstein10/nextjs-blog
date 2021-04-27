@@ -9,9 +9,12 @@
     "format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc"
   },
   "dependencies": {
+    "@types/faker": "^5.5.3",
     "@types/react-bootstrap": "^0.32.25",
     "bootstrap": "^4.6.0",
     "date-fns": "^2.16.1",
+    "faker": "^5.5.3",
+    "firebase": "^8.4.2",
     "gray-matter": "^4.0.2",
     "next": "^10.0.0",
     "react": "17.0.1",

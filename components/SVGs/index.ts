@@ -5,3 +5,4 @@ export * from "./FilterToggle";
 export * from "./CloseBtn";
 export * from "./AngleRight";
 export * from "./AngleLeft";
+export * from "./Cart";

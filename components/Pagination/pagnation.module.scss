@@ -1,5 +1,7 @@
 .pagination {
   border: none;
+  flex-wrap: wrap;
+  justify-content: center;
 
   button {
     background: none;

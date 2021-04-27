@@ -3,3 +3,4 @@ export * from "./FeaturedProduct";
 export * from "./ProductSection";
 export * from "./Cart";
 export * from "./Loader";
+export * from "./Button";

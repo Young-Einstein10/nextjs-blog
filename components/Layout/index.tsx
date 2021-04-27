@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Button } from "react-bootstrap";
 import { useCartContext } from "../../context";
+import { Cart } from "../SVGs";
 import styles from "./layout.module.scss";
 
 const Logo = "./images/logo.png";
@@ -28,12 +29,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           <nav className="d-flex justify-content-between align-items-center py-3">
             <div>
-              <img src={Logo} alt="Site Logo" />
+              <img width={159} height={25} src={Logo} alt="Site Logo" />
             </div>
 
             <Button onClick={() => openCart()} className={addToCartBtn} variant="light">
-              <img src={CartIcon} alt="Cart" />
-
+              <Cart />
               <div className={cartCount}>{cartItems.length}</div>
             </Button>
           </nav>

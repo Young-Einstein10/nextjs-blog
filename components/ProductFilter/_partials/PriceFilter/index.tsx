@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useProductContext } from "../../../../context";
 import { IPriceFilter } from "../../../../context/Products/types";
-import styles from "../../productFilter.module.scss";
+import styles from "./priceFilter.module.scss";
 
 export const PriceFilter = () => {
   const [checked, setChecked] = useState<{ [key: string]: boolean }>({});

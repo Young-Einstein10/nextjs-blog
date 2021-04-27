@@ -1,4 +1,5 @@
 import React, { useState, FC } from "react";
+import Image from "next/image";
 import { useCartContext } from "../../context";
 import { IProductProps } from "../../context/Products/types";
 import styles from "./product.module.scss";
@@ -39,9 +40,11 @@ export const ProductItem: FC<IProductItemProps> = ({ product }) => {
           onMouseEnter={() => handleMouseEnter()}
           onMouseLeave={() => handleMouseLeave()}
           className="position-relative">
-          <div
+          {/* <div
             className={`${productCover}`}
-            style={{ backgroundImage: `url('${ProductCover}')` }}></div>
+            style={{ backgroundImage: `url('${ProductCover}')` }}></div> */}
+
+          <Image src={ProductCover} alt={name} width={310} height={415} layout="responsive" />
 
           {bestseller && (
             <div className={bestSellerFlag}>

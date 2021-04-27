@@ -3,18 +3,20 @@
 
   .productDetails {
     .name {
+      margin-bottom: 0;
       font-size: 20px;
       font-weight: bold;
     }
 
     .price {
+      margin-bottom: 0;
       font-size: 29px;
       color: #656565;
     }
   }
 
-  .productImg {
-    width: 150px;
-    height: 86px;
-  }
+  // .productImg {
+  //   width: 150px;
+  //   height: 86px;
+  // }
 }

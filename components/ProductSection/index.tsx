@@ -13,8 +13,6 @@ export const ProductSection: FC = () => {
 
   const { productSection, productWrapper, category, filterToggle } = styles;
 
-  const { filteredProducts } = useProductContext();
-
   const toggleFilterModal = () => setIsMobileFilterOpen((open) => !open);
 
   return (
@@ -29,8 +27,6 @@ export const ProductSection: FC = () => {
           </p>
 
           <p>Premium Photos</p>
-
-          <span>Products: {filteredProducts.length}</span>
         </div>
 
         <ProductSorter />

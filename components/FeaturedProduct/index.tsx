@@ -1,5 +1,6 @@
 import React, { FC, Fragment } from "react";
 import { Button, Row, Col } from "react-bootstrap";
+import Image from "next/image";
 import { useCartContext, useProductContext } from "../../context";
 import { IProductProps } from "../../context/Products/types";
 import { Loader } from "../Loader";
@@ -52,9 +53,25 @@ export const FeaturedProduct: FC<{ products: IProductProps[] }> = ({ products: p
           </header>
 
           <div className={`${featured_img__wrapper} mb-5`}>
-            {image && typeof image === "object" && <img src={image.src} alt={image.alt} />}
+            {/* {image && typeof image === "object" && (
+              <img src={image.src} alt={image.alt} width={100} height={100} />
+            )} */}
+            {image && typeof image === "object" && (
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={1636}
+                height={726}
+                layout="responsive"
+              />
+            )}
 
-            {image && typeof image === "string" && <img src={image} alt="Featured Image" />}
+            {/* {image && typeof image === "string" && (
+              <img src={image} alt="Featured Image" width={100} height={100} />
+            )} */}
+            {image && typeof image === "string" && (
+              <Image src={image} alt="Featured Image" width={1636} height={726} />
+            )}
 
             <div className={photoOfDay}>
               <span>Photo of the day</span>
@@ -87,7 +104,13 @@ export const FeaturedProduct: FC<{ products: IProductProps[] }> = ({ products: p
                 <div className={`${wrapper} mb-5`}>
                   {recommendations.map((recommendation, idx) => (
                     <div key={idx} className={similar_product__img}>
-                      <img src={recommendation.src} alt={recommendation.alt} />
+                      <Image
+                        src={recommendation.src}
+                        alt={recommendation.alt}
+                        width={117}
+                        height={147}
+                        layout="responsive"
+                      />
                     </div>
                   ))}
                 </div>

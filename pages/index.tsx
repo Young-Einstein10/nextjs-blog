@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Layout, FeaturedProduct, ProductSection, Cart } from "../components";
 import { useCartContext, useProductContext } from "../context";
-import data from "../products.json";
+import { db } from "../libs/firebase";
 
 const Home: FC = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { loadProducts } = useProductContext();
@@ -27,15 +27,13 @@ const Home: FC = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const res = await fetch("/products.json");
+  const snapshot = await db.collection("mainProducts").get();
 
-  // console.log(res.json());
-
-  // const products: IProductProps[] = await res.json();
+  const data = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 
   return {
     props: {
-      products: data.products,
+      products: data,
     },
   };
 };
